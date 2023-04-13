@@ -30,46 +30,6 @@ export const SampleSearch = () => {
 
   const [gMap, setGMap] = React.useState(null);
 
-//   const onLoad = React.useCallback(function callback(gMap: any) {
-//     console.log("func: onLoad");
-//     // This is just an example of getting and using the map instance!!! don't just blindly copy!
-//     const bounds = new window.google.maps.LatLngBounds(center);
-//     gMap.fitBounds(bounds);
-
-//     // const sydney = new window.google.maps.LatLng(-33.867, 151.195);
-//     // // console.log(sydney);
-
-//     // infowindow = new google.maps.InfoWindow();
-//     // // console.log(infowindow);
-
-//     // map = new google.maps.Map({children} as HTMLElement, {
-//     //   center: sydney,
-//     //   zoom: 15,
-//     // });
-//     // // console.log(map);
-
-//     // var request = {
-//     //   query: "Museum of Contemporary Art Australia",
-//     //   fields: ["name", "geometry"],
-//     // };
-
-//     // service = new google.maps.places.PlacesService(map);
-
-//     // service.findPlaceFromQuery(request, function (results, status) {
-//     //   if (status === google.maps.places.PlacesServiceStatus.OK) {
-//     //     // console.log(results);
-//     //     // console.log(results![0]);
-//     //     // console.log(results![0].geometry);
-//     //   }
-//     // });
-
-//     setGMap(gMap);
-//   }, []);
-
-//   const onUnmount = React.useCallback(function callback(gMap: any) {
-//     setGMap(null);
-//   }, []);
-
   // ★googleAPI関数を外に出す or 「GoogleAPIを読み込む何か」より後じゃないといけない;
   const onClickTest = () => {
     console.log("func: onClickTest");
@@ -86,7 +46,7 @@ export const SampleSearch = () => {
     });
 
     var request = {
-      query: "Museum of Contemporary Art Australia",
+      query: "東京タワー",
       fields: ["name", "geometry"],
     };
 
@@ -98,7 +58,7 @@ export const SampleSearch = () => {
         console.log(results![0].geometry?.location);
         console.log(results![0].geometry?.location?.lat());
         console.log(results![0].geometry?.location?.lng());
-        // map.setCenter(results![0].geometry?.location?);
+        map.setCenter(results![0].geometry!.location!);
       }
     });
   };
