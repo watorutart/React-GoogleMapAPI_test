@@ -1,10 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./App.css";
 import { GoogleMap, Marker } from "@react-google-maps/api";
-import { useSearch } from "./hooks/useSearch";
-import { ForTest } from "./hooks/ForTest";
 import { LatLng } from "./types/LatLng";
-import { GeocoderTest } from "./components/google/GeocoderTest";
+import { PrimaryButton } from "./components/atoms/PrimaryButton";
+import { InputText } from "./components/atoms/InputText";
 
 const mapStyles = {
   height: "500px",
@@ -12,9 +11,6 @@ const mapStyles = {
 };
 
 export default function App() {
-  const ref = useRef(null);
-  const [map, setMap] = useState();
-
   const defaultCenter: LatLng = {
     lat: 41.3851,
     lng: 2.1734,
@@ -34,6 +30,7 @@ export default function App() {
     geocoder.geocode({ address: inputText }, (results, status) => {
       if (status == "OK") {
         console.log("success");
+        console.log(results);
         retLatLng = {
           lat: results![0].geometry.location.lat(),
           lng: results![0].geometry.location.lng(),
@@ -56,10 +53,10 @@ export default function App() {
 
   return (
     <>
-      <input type="text" value={inputText} onChange={onChangeText} placeholder="場所の名前で検索" />
-      <button onClick={() => onClickSearch(inputText)}>検索</button>
-      <button onClick={onClickClear}>入力クリア</button>
-      <button onClick={onClickReset}>地図リセット</button>
+      <InputText value={inputText} placeholder="場所を検索" onChange={onChangeText} />
+      <PrimaryButton bgColor="teal" onClick={() => onClickSearch(inputText)}>検索</PrimaryButton>
+      <PrimaryButton bgColor="gray" onClick={onClickClear}>入力クリア</PrimaryButton>
+      {/* <PrimaryButton bgColor="red" onClick={onClickReset}>地図リセット</PrimaryButton> */}
       <GoogleMap mapContainerStyle={mapStyles} zoom={13} center={latLng}>
         <Marker position={latLng}/>
       </GoogleMap>
