@@ -3,18 +3,18 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { GoogleMapComponent } from "./components/google/GoogleMapComponent";
-import { SampleSearch } from "./components/google/SampleSearch";
+// import { Wrapper } from "@googlemaps/react-wrapper";
+import { LoadScript } from "@react-google-maps/api";
+import { GeocoderTest } from "./components/google/GeocoderTest";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
-  <React.StrictMode>
-    {/* <App /> */}
-    {/* <GoogleMapComponent></GoogleMapComponent> */}
-    <SampleSearch />
-  </React.StrictMode>
+  <LoadScript googleMapsApiKey="API Key">
+    <App />
+    {/* <GeocoderTest /> */}
+  </LoadScript>
 );
 
 // If you want to start measuring performance in your app, pass a function
